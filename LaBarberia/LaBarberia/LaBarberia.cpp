@@ -85,8 +85,9 @@ int main()
 	 {
 		  int selector;
 		  std::cout << "Bienvenido a la Barberia!\n";
-		  std::cout << "�Que desea hacer?\n1) Registrar\n2) Ver\n3) Modificar\n4) Cancelar\n5) Cerrar\n";
-
+		  std::cout<<"Puedes elegir estas opciones: \n";
+		  std::cout <<"1) Citas\n2) Fila\n3) Salir\n";
+		  std::cout<<"Que deseas hacer?\n";
 		  std::cin >> selector;
 		  switch (selector)
 		  {
@@ -95,22 +96,16 @@ int main()
 			   break;
 
 		  case 2:
-			   for (int x = 0; x < regisActual;x++) {
+			   /* for (int x = 0; x < regisActual;x++) {
 					cout << arreglo[x].getId() << " " << arreglo[x].getNombre() << " " << arreglo[x].getTelefono() << " " << arreglo[x].getBarbero() << " " << arreglo[x].getFecha() << " " << arreglo[x].getHora() << " " << arreglo[x].getTipo() << "\n";
-			   }
+			   } */
 			   break;
-
 		  case 3:
-			   break;
-
-		  case 4:
-			   break;
-
-		  case 5:
 		  default:
 			   repetir = false;
 			   break;
 		  }
-		  std::cout << "\n";
+		  std::cout << "Adios! :D \n";
+		  system("PAUSE");
 	 }
 }
