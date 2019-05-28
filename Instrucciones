@@ -1,0 +1,35 @@
+Inicio:
+Menú(1. Registrar citas 2. Ver  3. Modificar 4. Cancelar 5. Cerrar)
+
+Datos de registro:
+id (autoincrement registrado en archivo al final)
+Nombre
+Teléfono
+Barbero (A-D)
+fecha (DD-MM-YY)
+Hora (HH:MM) [24Hrs]
+Tipo C/F (cita o fila)
+
+Registrar citas:
+Registrar cita 
+Registrar en Fila espera - preguntar si desea ser asignado a un barbero
+
+citas.txt
+
+Ver:
+Ver citas
+Cargar archivo citas mostrando los de tipo C
+
+Ver Fila de espera
+Cargar archivo citas mostrando los de tipo F
+
+      c)  Ver todo
+Cargar archivo mostrando todos los registros 
+
+Modificar:
+Mostrar todas las citas y pedir el id para modificar -> definir modificación -> modificar -> registrar archivo
+Cancelar:
+Eliminar registro
+
+Cerrar:
+Terminar
