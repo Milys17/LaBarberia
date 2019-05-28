@@ -25,7 +25,7 @@ void registrarArchivo() {
 	 }
 }
 
-void añadirArreglo(cita Cita) {
+void addArreglo(cita Cita) {
 	 if (regisActual < 200) {
 		  arreglo[regisActual] = Cita;
 		  registrarArchivo();
@@ -61,7 +61,7 @@ void registrar() {
 		  std::cin >> hora;
 
 		  cita newCita(std::to_string(regisActual),nombre,telefono,barbero,fecha,hora);
-		  añadirArreglo(newCita);
+		  addArreglo(newCita);
 	 }
 	 else {
 		  string nombre, fecha;
@@ -73,7 +73,7 @@ void registrar() {
 		  std::cin >> fecha;
 	
 		  cita newCita(std::to_string(regisActual), nombre, fecha);
-		  añadirArreglo(newCita);
+		  addArreglo(newCita);
 	 }
 }
 
@@ -85,7 +85,7 @@ int main()
 	 {
 		  int selector;
 		  std::cout << "Bienvenido a la Barberia!\n";
-		  std::cout << "¿Que desea hacer?\n1) Registrar\n2) Ver\n3) Modificar\n4) Cancelar\n5) Cerrar\n";
+		  std::cout << "ï¿½Que desea hacer?\n1) Registrar\n2) Ver\n3) Modificar\n4) Cancelar\n5) Cerrar\n";
 
 		  std::cin >> selector;
 		  switch (selector)
