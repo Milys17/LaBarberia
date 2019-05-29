@@ -32,7 +32,9 @@ void addArreglo(cita Cita) {
 	 } 
 }
 void registrarCita() {
-	 int selec;
+	 std::stringstream sFecha;
+	 std::stringstream sHora;
+	 int selec, mes, dia, horas, minuto;
 	 std::cout << "\n";
 	 string nombre, telefono, barbero, fecha, hora;
 	 std::cout << "Nombre:\n";
@@ -43,7 +45,8 @@ void registrarCita() {
 	 std::cin >> telefono;
 	 std::cout << "\n";
 
-	 std::cout << "Barbero: (A / B / C / D)\n";
+	 std::cout << "Barbero: (A / B / C / D)\n";//Se necesitan poner los nombres de los barberos, no solo letras
+	 //Requerimientos del profe (dichos en persona)
 	 std::cin >> barbero;
 	 std::cout << "\n";
 
@@ -59,10 +62,14 @@ void registrarCita() {
 	 loopMes:
 	 std::cout<<"Ingresar Mes: \n";
 	 std::cin>>mes;
-		if(mes>13&&mes<1){
+		if(mes>12&&mes<1){
 			std::cout<<"Por favor recuerda que un mes solo puede tener 12 meses. \n";
 			goto loopMes;
 		}
+		if(mes>0||mes<13){
+			goto loopDia;
+		}	
+		
 	 loopDia:
 	 std::cout<<"Ingresar dia: \n";
 	 std::cin>>dia;
@@ -74,28 +81,46 @@ void registrarCita() {
 		 std::cout<<"Por favor intenta nuevamente. \n";
 		 goto loopDia;
 	 }
-	 
+	 if(dia>0||dia<32){
+		 sFecha<<mes+"/"+dia;
+	 	fecha=sFecha.str();
+	 	goto loopHora;
+	 }
+		/* else{
+			std::cout<<"Por favor intenta nuevamente. \n";
+			goto loopDia;
+		} */
+		
 	 loopHora:
 	 std::cout<<"Ingresar hora: \n";
-	 std::cin>>hora;
-	 
-	 if(hora<8||hora>20){
+	 std::cin>>horas;
+	 if(horas<8||horas>20){
 	 std::cout<<"Por favor captura a una hora que estemos abiertos. \n";
 	 goto loopHora;
 	 }
+	 if(horas>7||horas<20){
+		 goto loopMinuto;
+	 }
+	 /* else{
+		 goto loopHora;
+	 } */
 	 
 	 loopMinuto:
 	 std::cout<<"Ingresar minuto: \n";
 	 std::cin>>minuto;
 	 if(minuto<0||minuto>59){
-		 if(minuto%15!=0){
-			 std::cout<<"Las citas solo pueden ser en minutos multiplos de 15. \n";
-			 goto loopMinuto;
-		 }
-	 std::cout<<"Por favor recuerda que una hora solo tiene 60 minutos \n";
+		 std::cout<<"Por favor recuerda que una hora solo tiene 60 minutos \n";
 	 goto loopMinuto;
-}//fin nuevo modelo
-
+	}
+	if(minuto>0||minuto<60){
+		sHora<<horas+":"+minuto;
+	 	hora=sHora.str();
+	}
+	/* else{
+		std::cout<<"Por favor recuerda que una hora solo tiene 60 minutos \n";
+		goto loopMinuto;
+	} */
+	//fin nuevo modelo
 	 cita newCita(std::to_string(arrayIndex), nombre, telefono, barbero, fecha, hora);
 	 
 	 if (arrayIndex < 200) {
