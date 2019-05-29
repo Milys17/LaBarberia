@@ -6,7 +6,7 @@
 #include "Cita.h"
 using namespace std;
 
-int regisActual = 1;
+int arrayIndex = 0;
 string mystr;
 ofstream oFile("citas.txt");
 ifstream iFile("citas.txt");
@@ -15,7 +15,7 @@ cita arreglo[200];
 
 void registrarArchivo() {
 	 if (oFile.is_open()) {
-		  for (int x = 0; x < std::size_t(arreglo); x++) {
+		  for (int x = 0; x < arrayIndex+1; x++) {
 			   std::stringstream  ss;
 			   ss << arreglo[x].getNombre() << " " << arreglo[x].getId() << " " << arreglo[x].getTelefono() << " " << arreglo[x].getBarbero() << " " << arreglo[x].getFecha() << " " << arreglo[x].getHora() << " " << arreglo[x].getTipo() << "\n";
 			   std::string s = ss.str();
@@ -26,53 +26,94 @@ void registrarArchivo() {
 }
 
 void addArreglo(cita Cita) {
-	 if (regisActual < 200) {
-		  arreglo[regisActual] = Cita;
+	 if (arrayIndex < 200) {
+		  arreglo[arrayIndex] = Cita;
 		  registrarArchivo();
-		  regisActual++;
 	 } 
 }
-void registrar() {
+void registrarCita() {
 	 int selec;
 	 std::cout << "\n";
-	 std::cout << "Registrar:\n1) Cita\n2) En fila de espera\n";
-	 std::cin >> selec;
+	 string nombre, telefono, barbero, fecha, hora;
+	 std::cout << "Nombre:\n";
+	 std::cin >> nombre;
 	 std::cout << "\n";
-	 if (selec == 1) {
-		  string nombre, telefono, barbero, fecha, hora;
-		  std::cout << "Nombre:\n";
-		  std::cin >> nombre;
-		  std::cout << "\n";
 
-		  std::cout << "Telefono:\n";
-		  std::cin >> telefono;
-		  std::cout << "\n";
+	 std::cout << "Telefono:\n";
+	 std::cin >> telefono;
+	 std::cout << "\n";
 
-		  std::cout << "Barbero: (A / B / C / D)\n";
-		  std::cin >> barbero;
-		  std::cout << "\n";
+	 std::cout << "Barbero: (A / B / C / D)\n";
+	 std::cin >> barbero;
+	 std::cout << "\n";
 
-		  std::cout << "Fecha: (DD-MM-AA)\n";
-		  std::cin >> fecha;
-		  std::cout << "\n";
+	 std::cout << "Fecha: (DD-MM-AA)\n";
+	 std::cin >> fecha;
+	 std::cout << "\n";
 
-		  std::cout << "Hora: (HH:MM)\n";
-		  std::cin >> hora;
+	 std::cout << "Hora: (HH:MM)\n";
+	 std::cin >> hora;
+	 std::cout << "\n";
 
-		  cita newCita(std::to_string(regisActual),nombre,telefono,barbero,fecha,hora);
-		  addArreglo(newCita);
+	 cita newCita(std::to_string(arrayIndex), nombre, telefono, barbero, fecha, hora);
+	 
+	 if (arrayIndex < 200) {
+		 addArreglo(newCita);
+		 arrayIndex++;
 	 }
 	 else {
-		  string nombre, fecha;
-		  std::cout << "Nombre:\n";
-		  std::cin >> nombre;
-		  std::cout << "\n";
+		 std::cout << "Memoria llena...\n";
+	 }
+}
 
-		  std::cout << "FechaActual";
-		  std::cin >> fecha;
-	
-		  cita newCita(std::to_string(regisActual), nombre, fecha);
+void verCita() {
+	 if (arrayIndex == 0) {
+		  std::cout << "No tienes citas programadas...\n";
+	 }
+	 else {
+		  std:cout << "\n";
+		  for (int y = 0; y < arrayIndex; y++) {
+			   if (arreglo[y].getTipo() == "0")
+					std::cout << arreglo[y].getId() << " " << arreglo[y].getNombre() << " " << arreglo[y].getTelefono() << " " << arreglo[y].getBarbero() << " " << arreglo[y].getFecha() << " " << arreglo[y].getHora() << " " << "\n";
+		  }
+					std::cout << "\n";
+	 }
+}
+
+void registrarFila() {
+	 int selec;
+	 std::cout << "\n";
+
+	 string nombre, fecha;
+	 std::cout << "Nombre:\n";
+	 std::cin >> nombre;
+	 std::cout << "\n";
+
+	 std::cout << "FechaActual:\n";
+	 std::cin >> fecha;
+	 std:cout << "\n";
+	 cita newCita(std::to_string(arrayIndex), nombre, fecha);
+	 
+	 if (arrayIndex < 200) {
 		  addArreglo(newCita);
+		  arrayIndex++;
+	 }
+	 else {
+		  std::cout << "Memoria llena...\n";
+	 }
+}
+
+void verFila() {
+	 if (arrayIndex == 0) {
+		  cout << "No tienes filas programadas...\n";
+	 }
+	 else {
+		  std:cout << "\n";
+		  for (int y = 0; y < arrayIndex; y++) {
+			   if (arreglo[y].getTipo() == "1")
+					std::cout << arreglo[y].getNombre() << " " << arreglo[y].getBarbero() << " " << arreglo[y].getHora() << " " << "\n";
+		  }
+					std::cout << "\n";
 	 }
 }
 
@@ -91,26 +132,39 @@ int main()
 		  switch (selector)
 		  {
 		  case 1:
-			   registrar();
-			   break;
+			   std::cout << "1) Crear citas\n2) Ver citas\n";
+			   std::cin >> selector;
+			   if (selector == 1) {
+					registrarCita();
+					break;
+			   }
+			   else {
+					verCita();
+					break;
+			   }
+	
+	 	  case 2:
+			   std::cout << "1) Crear filas\n2) Ver filas\n";
+			   std::cin >> selector;
+			   if (selector == 1) {
+					registrarFila();
+					break;
+			   }
+			   else {
+					verFila();
+					break;
+			   }
 
-		  case 2:
-			   /* for (int x = 0; x < regisActual;x++) {
-					cout << arreglo[x].getId() << " " << arreglo[x].getNombre() << " " << arreglo[x].getTelefono() << " " << arreglo[x].getBarbero() << " " << arreglo[x].getFecha() << " " << arreglo[x].getHora() << " " << arreglo[x].getTipo() << "\n";
-			   } */
-			   break;
 		  case 3:
+		  default:
 		  		std::cout<<"Estas seguro que deseas salir?";
 				std::cin>>mystr;
 				if(mystr=="si"||mystr=="Si"||mystr=="SI"||mystr=="s"){
 			   		repetir = false;
-					   break;
+					std::cout << "Adios! :D \n";
 				}
-				else
 			   break;
 		  }
-		 
-		  
 	 }
 	  std::cout << "Adios! :D \n";
 	  system("PAUSE");
