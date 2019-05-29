@@ -7,7 +7,7 @@
 using namespace std;
 
 int regisActual = 1;
-
+string mystr;
 ofstream oFile("citas.txt");
 ifstream iFile("citas.txt");
 
@@ -15,7 +15,7 @@ cita arreglo[200];
 
 void registrarArchivo() {
 	 if (oFile.is_open()) {
-		  for (int x = 0; x < std::size(arreglo); x++) {
+		  for (int x = 0; x < std::size_t(arreglo); x++) {
 			   std::stringstream  ss;
 			   ss << arreglo[x].getNombre() << " " << arreglo[x].getId() << " " << arreglo[x].getTelefono() << " " << arreglo[x].getBarbero() << " " << arreglo[x].getFecha() << " " << arreglo[x].getHora() << " " << arreglo[x].getTipo() << "\n";
 			   std::string s = ss.str();
@@ -29,10 +29,9 @@ void addArreglo(cita Cita) {
 	 if (regisActual < 200) {
 		  arreglo[regisActual] = Cita;
 		  registrarArchivo();
-	 }
-	 regisActual++;
+		  regisActual++;
+	 } 
 }
-
 void registrar() {
 	 int selec;
 	 std::cout << "\n";
@@ -101,11 +100,16 @@ int main()
 			   } */
 			   break;
 		  case 3:
-		  default:
-			   repetir = false;
+		  		std::cout<<"Estas seguro que deseas salir?";
+				getline(cin, mystr);
+				if(mystr=="Si"){
+			   		repetir = false;
+					   break;
+				}
+				else
 			   break;
 		  }
 		  std::cout << "Adios! :D \n";
-		  system("PAUSE");
+		  //system("PAUSE");
 	 }
 }
