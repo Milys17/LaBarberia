@@ -101,15 +101,17 @@ int main()
 			   break;
 		  case 3:
 		  		std::cout<<"Estas seguro que deseas salir?";
-				getline(cin, mystr);
-				if(mystr=="Si"){
+				std::cin>>mystr;
+				if(mystr=="si"||mystr=="Si"||mystr=="SI"||mystr=="s"){
 			   		repetir = false;
 					   break;
 				}
 				else
 			   break;
 		  }
-		  std::cout << "Adios! :D \n";
-		  //system("PAUSE");
+		 
+		  
 	 }
+	  std::cout << "Adios! :D \n";
+	  system("PAUSE");
 }
