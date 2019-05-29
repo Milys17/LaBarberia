@@ -8,12 +8,11 @@ using namespace std;
 
 int arrayIndex = 0;
 string mystr;
-ofstream oFile("citas.txt");
-ifstream iFile("citas.txt");
 
 cita arreglo[200];
 
 void registrarArchivo() {
+	 ofstream oFile("citas.txt");
 	 if (oFile.is_open()) {
 		  for (int x = 0; x < arrayIndex+1; x++) {
 			   std::stringstream  ss;
@@ -29,6 +28,7 @@ void addArreglo(cita Cita) {
 	 if (arrayIndex < 200) {
 		  arreglo[arrayIndex] = Cita;
 		  registrarArchivo();
+		  arrayIndex++;
 	 } 
 }
 void registrarCita() {
@@ -122,14 +122,7 @@ void registrarCita() {
 	} */
 	//fin nuevo modelo
 	 cita newCita(std::to_string(arrayIndex), nombre, telefono, barbero, fecha, hora);
-	 
-	 if (arrayIndex < 200) {
-		 addArreglo(newCita);
-		 arrayIndex++;
-	 }
-	 else {
-		 std::cout << "Citas llenas...\n";
-	 }
+     addArreglo(newCita);
 }
 
 void verCita() {
@@ -138,7 +131,7 @@ void verCita() {
 	 }
 	 else {
 		  std:cout << "\n";
-		  for (int y = 0; y < arrayIndex; y++) {
+		  for (int y = 0; y < arrayIndex+1; y++) {
 			   if (arreglo[y].getTipo() == "0")
 					std::cout << arreglo[y].getId() << " " << arreglo[y].getNombre() << " " << arreglo[y].getTelefono() << " " << arreglo[y].getBarbero() << " " << arreglo[y].getFecha() << " " << arreglo[y].getHora() << " " << "\n";
 		  }
@@ -175,7 +168,7 @@ void verFila() {
 	 }
 	 else {
 		  std:cout << "\n";
-		  for (int y = 0; y < arrayIndex; y++) {
+		  for (int y = 0; y < arrayIndex+1; y++) {
 			   if (arreglo[y].getTipo() == "1")
 					std::cout << arreglo[y].getNombre() << " " << arreglo[y].getBarbero() << " " << arreglo[y].getHora() << " " << "\n";
 		  }
@@ -184,8 +177,66 @@ void verFila() {
 }
 
 
+void IniciarArchivo() {
+	 ifstream iFile("citas.txt");
+	 if (iFile.fail()) {
+		  std::ofstream oFile("citas.txt");
+		  oFile.close();
+	 }
+	 else {
+		  ifstream iFile("citas.txt");
+		  if (iFile.is_open()) {
+			   string cad;
+			   while (getline(iFile, cad)) {
+					stringstream ss(cad);
+					int c = 0;
+					string w;
+					cita tmp;
+
+					while (ss >> w) {
+						 switch (c) {
+
+						 case 0:
+							  tmp.setNombre(w);
+							  break;
+
+						 case 1:
+							  tmp.setId(w);
+							  break;
+
+						 case 2:
+							  tmp.setTelefono(w);
+							  break;
+
+						 case 3:
+							  tmp.setBarbero(w);
+							  break;
+
+						 case 4:
+							  tmp.setFecha(w);
+							  break;
+
+						 case 5:
+							  tmp.setHora(w);
+							  break;
+
+						 case 6:
+							  tmp.setTipo(w);
+						 }
+
+						 c++;
+					}
+					addArreglo(tmp);
+			   }
+			   iFile.close();
+		  }
+
+	 }
+}
+
 int main()
 {
+	 IniciarArchivo();
 	 bool repetir = true;
 	 while (repetir)
 	 {
@@ -232,6 +283,4 @@ int main()
 			   break;
 		  }
 	 }
-	  std::cout << "Adios! :D \n";
-	  system("PAUSE");
 }
