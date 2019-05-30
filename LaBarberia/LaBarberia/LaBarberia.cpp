@@ -50,25 +50,18 @@ void registrarCita() {
 	 std::cin >> barbero;
 	 std::cout << "\n";
 
-	 /* std::cout << "Fecha: (DD-MM-AA)\n";
-	 std::cin >> fecha;
-	 std::cout << "\n";
-
-	 std::cout << "Hora: (HH:MM)\n";
-	 std::cin >> hora;
-	 std::cout << "\n"; */
-							//Nuevo modelo de ingresar fecha y hora
-	 std::cout<<"Ingresar la fecha: \n";
+	 //Nuevo modelo de ingresar fecha y hora
 	 loopMes:
+	 std::cout << "Ingresar la fecha: \n";
 	 std::cout<<"Ingresar Mes: \n";
 	 std::cin>>mes;
 		if(mes>12&&mes<1){
 			std::cout<<"Por favor recuerda que un mes solo puede tener 12 meses. \n";
 			goto loopMes;
 		}
-		if(mes>0||mes<13){
-			goto loopDia;
-		}	
+		else {
+			 goto loopDia;
+		}
 		
 	 loopDia:
 	 std::cout<<"Ingresar dia: \n";
@@ -81,46 +74,36 @@ void registrarCita() {
 		 std::cout<<"Por favor intenta nuevamente. \n";
 		 goto loopDia;
 	 }
-	 if(dia>0||dia<32){
-		 sFecha<<mes+"/"+dia;
-	 	fecha=sFecha.str();
-	 	goto loopHora;
+	 else {
+		  sFecha << mes << "/" << dia;
+		  fecha = sFecha.str();
+		  goto loopHora;
 	 }
-		/* else{
-			std::cout<<"Por favor intenta nuevamente. \n";
-			goto loopDia;
-		} */
+	 
 		
 	 loopHora:
 	 std::cout<<"Ingresar hora: \n";
 	 std::cin>>horas;
 	 if(horas<8||horas>20){
-	 std::cout<<"Por favor captura a una hora que estemos abiertos. \n";
-	 goto loopHora;
+		  std::cout<<"Por favor captura a una hora que estemos abiertos. \n";
+		  goto loopHora;
 	 }
-	 if(horas>7||horas<20){
-		 goto loopMinuto;
+	 else {
+		  goto loopMinuto;
 	 }
-	 /* else{
-		 goto loopHora;
-	 } */
 	 
 	 loopMinuto:
 	 std::cout<<"Ingresar minuto: \n";
 	 std::cin>>minuto;
 	 if(minuto<0||minuto>59){
 		 std::cout<<"Por favor recuerda que una hora solo tiene 60 minutos \n";
-	 goto loopMinuto;
-	}
-	if(minuto>0||minuto<60){
-		sHora<<horas+":"+minuto;
+		 goto loopMinuto;
+	 }
+	 else {
+		sHora << horas << ":" << minuto;
 	 	hora=sHora.str();
-	}
-	/* else{
-		std::cout<<"Por favor recuerda que una hora solo tiene 60 minutos \n";
-		goto loopMinuto;
-	} */
-	//fin nuevo modelo
+	 }
+	
 	 cita newCita(std::to_string(arrayIndex), nombre, telefono, barbero, fecha, hora);
      addArreglo(newCita);
 }
@@ -143,23 +126,46 @@ void registrarFila() {
 	 int selec;
 	 std::cout << "\n";
 
-	 string nombre, fecha;
+	 string nombre;
 	 std::cout << "Nombre:\n";
 	 std::cin >> nombre;
 	 std::cout << "\n";
 
-	 std::cout << "FechaActual:\n";
-	 std::cin >> fecha;
-	 std:cout << "\n";
-	 cita newCita(std::to_string(arrayIndex), nombre, fecha);
-	 
-	 if (arrayIndex < 200) {
-		  addArreglo(newCita);
-		  arrayIndex++;
+	 int mes, dia;
+	 stringstream sFecha;
+	 string fecha;
+
+	 loopMes:
+	 std::cout << "Ingresar la fecha: \n";
+	 std::cout<<"Ingresar Mes: \n";
+	 std::cin>>mes;
+		if(mes>12&&mes<1){
+			std::cout<<"Por favor recuerda que un mes solo puede tener 12 meses. \n";
+			goto loopMes;
+		}
+		else {
+			 goto loopDia;
+		}
+		
+	 loopDia:
+	 std::cout<<"Ingresar dia: \n";
+	 std::cin>>dia;
+	 if(mes==2&&dia>28){
+		 std::cout<<"Febrero solo tiene 28 dias, por favor ingresa nuevamente el dia. \n";
+		 goto loopDia;
+	 }
+	 if(dia<1||dia>31){
+		 std::cout<<"Por favor intenta nuevamente. \n";
+		 goto loopDia;
 	 }
 	 else {
-		  std::cout << "Citas llenas...\n";
+		  sFecha << mes << "/" << dia;
+		  fecha = sFecha.str();
 	 }
+
+	
+	 cita newCita(std::to_string(arrayIndex), nombre, fecha);
+	 addArreglo(newCita);
 }
 
 void verFila() {
