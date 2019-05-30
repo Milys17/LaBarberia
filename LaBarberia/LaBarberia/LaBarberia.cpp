@@ -238,14 +238,21 @@ int main()
 {
 	 IniciarArchivo();
 	 bool repetir = true;
+	 int selector;
 	 while (repetir)
 	 {
-		  int selector;
+		  loopMenu:
 		  std::cout << "Bienvenido a la Barberia!\n";
 		  std::cout<<"Puedes elegir estas opciones: \n";
 		  std::cout <<"1) Citas\n2) Fila\n3) Salir\n";
 		  std::cout<<"Que deseas hacer?\n";
-		  std::cin >> selector;
+
+		  while(!(cin>>selector)){
+			   cin.clear();
+			   cin.ignore(1000,'\n');
+			   cout<<"Por favor elige una opcion valida. \n";
+			   goto loopMenu;
+		   }
 		  switch (selector)
 		  {
 		  case 1:
@@ -273,7 +280,6 @@ int main()
 			   }
 
 		  case 3:
-		  default:
 		  		std::cout<<"Estas seguro que deseas salir?";
 				std::cin>>mystr;
 				if(mystr=="si"||mystr=="Si"||mystr=="SI"||mystr=="s"){
@@ -281,6 +287,9 @@ int main()
 					std::cout << "Adios! :D \n";
 				}
 			   break;
+			default:
+			std::cout<<"Por favor escoge una opcion valida. \n";
+			break;
 		  }
 	 }
 }
