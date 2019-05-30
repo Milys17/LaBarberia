@@ -72,7 +72,7 @@ loopTelefono:
 
 loopBarbero:
 	 try {
-			 std::cout << "Barbero:\nA) Antonio Dueñas\nB) Andre Herrera \nC) Miriam Bonilla\nD) Jose Romo\n";
+			 std::cout << "Barbero:\nA) Antonio Rivera \nB) Andre Herrera \nC) Miriam Bonilla\nD) Jose Romo\n";
 			 std::cin >> barbero;
 			 std::regex r(regexBarbero);
 			 std::smatch m;
@@ -80,7 +80,7 @@ loopBarbero:
 			 switch (*barbero.c_str()) {
 			 case 'a':
 			 case 'A':
-				 barbero = "Antonio_Dueñas";
+				 barbero = "Antonio_Rivera";
 				 break;
 
 			 case 'b':
@@ -105,22 +105,28 @@ loopBarbero:
 	 }
 	 std::cout << "\n";
 
-	 //Nuevo modelo de ingresar fecha y hora
+	  //Nuevo modelo de ingresar fecha y hora
+	 cout << "Ingresar la fecha. \n";
 	 loopMes:
-	 std::cout << "Ingresar la fecha: \n";
-	 std::cout<<"Ingresar Mes: \n";
-	 std::cin>>mes;
+	 cout<<"Ingresar Mes: \n";
+	 while(!(cin>>mes)){
+			   cin.clear();
+			   cin.ignore(1000,'\n');
+			   cout<<"Por favor ingresa numeros solamente. \n";
+			   goto loopMes;
+	}
 		if(mes>12&&mes<1){
-			std::cout<<"\nPor favor recuerda que un mes solo puede tener 12 meses. \n";
+			cout<<"\nPor favor recuerda que un mes solo puede tener 12 meses. \n";
 			goto loopMes;
-		}
-		else {
-			 goto loopDia;
-		}
-		
-	 loopDia:
-	 std::cout<<"Ingresar dia: \n";
-	 std::cin>>dia;
+		}		
+	loopDia:
+	cout<<"Ingresar dia: \n";
+	while(!(cin>>dia)){
+			   cin.clear();
+			   cin.ignore(1000,'\n');
+			   cout<<"Por favor ingresa numeros solamente. \n";
+			   goto loopDia;
+	}
 	 if(mes==2&&dia>28){
 		 std::cout<<"\nFebrero solo tiene 28 dias, por favor ingresa nuevamente el dia. \n";
 		 goto loopDia;
@@ -129,36 +135,38 @@ loopBarbero:
 		 std::cout<<"\nPor favor intenta nuevamente. \n";
 		 goto loopDia;
 	 }
-	 else {
-		  sFecha << mes << "/" << dia;
-		  fecha = sFecha.str();
-		  goto loopHora;
-	 }
-	 
-		
+
+		  	
 	 loopHora:
-	 std::cout<<"Ingresar hora: \n";
-	 std::cin>>horas;
+	std::cout<<"Ingresar hora: \n";
+	while(!(cin>>horas)){
+			   cin.clear();
+			   cin.ignore(1000,'\n');
+			   cout<<"Por favor ingresa numeros solamente. \n";
+			   goto loopHora;
+	}
 	 if(horas<8||horas>20){
 		  std::cout<<"Por favor captura a una hora que estemos abiertos. \n";
 		  goto loopHora;
 	 }
-	 else {
-		  goto loopMinuto;
-	 }
 	 
 	 loopMinuto:
 	 std::cout<<"Ingresar minuto: \n";
-	 std::cin>>minuto;
+	 while(!(cin>>minuto)){
+			cin.clear();
+			cin.ignore(1000,'\n');
+			cout<<"Por favor ingresa numeros solamente. \n";
+			goto loopMinuto;
+	}
 	 if(minuto<0||minuto>59){
 		 std::cout<<"\nPor favor recuerda que una hora solo tiene 60 minutos \n";
 		 goto loopMinuto;
 	 }
-	 else {
+		sFecha << mes << "/" << dia;
+		fecha = sFecha.str();
 		sHora << horas << ":" << minuto;
 	 	hora=sHora.str();
-	 }
-	
+		 
 	 cita newCita(std::to_string(arrayIndex), nombre, telefono, barbero, fecha, hora);
      addArreglo(newCita);
 }
