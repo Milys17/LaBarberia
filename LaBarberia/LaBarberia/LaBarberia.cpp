@@ -3,11 +3,13 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <regex>
 #include "Cita.h"
 using namespace std;
 
 int arrayIndex = 0;
 string mystr;
+string regexNombre = "^[A-Za-z/s]+$", regexTelefono = "^[0-9]+$", regexBarbero = "^[A-Da-d]$";
 
 cita arreglo[200];
 
@@ -35,19 +37,52 @@ void registrarCita() {
 	 std::stringstream sFecha;
 	 std::stringstream sHora;
 	 int selec, mes, dia, horas, minuto;
+
 	 std::cout << "\n";
 	 string nombre, telefono, barbero, fecha, hora;
-	 std::cout << "Nombre:\n";
-	 std::cin >> nombre;
+
+loopNombre:
+	 try {
+		  std::cout << "Nombre:\n";
+		  std::cin >> nombre;
+		  std::regex r(regexNombre);
+		  std::smatch m;
+		  if (!(regex_search(nombre, m, r)))throw 'ex';
+	 }
+	 catch (...) {
+		  cout << "\nFormato de nombre invalido\n";
+		  goto loopNombre;
+	 }
+
 	 std::cout << "\n";
 
-	 std::cout << "Telefono:\n";
-	 std::cin >> telefono;
+loopTelefono:
+	 try {
+		  std::cout << "Telefono:\n";
+		  std::cin >> telefono;
+		  std::regex r(regexTelefono);
+		  std::smatch m;
+		  if (!(regex_search(telefono, m, r)))throw 'ex';
+	 }
+	 catch (...) {
+		  cout << "\nFormato de telefono invalido\n";
+		  goto loopTelefono;
+	 }
 	 std::cout << "\n";
 
-	 std::cout << "Barbero: (A / B / C / D)\n";//Se necesitan poner los nombres de los barberos, no solo letras
-	 //Requerimientos del profe (dichos en persona)
-	 std::cin >> barbero;
+loopBarbero:
+	 try {
+		 std::cout << "Barbero: (A / B / C / D)\n";//Se necesitan poner los nombres de los barberos, no solo letras
+		 std::cin >> barbero;
+		 std::regex r(regexBarbero);
+		 std::smatch m;
+		 if (!(regex_search(barbero, m, r)))throw 'ex';
+	 }
+	 catch (...) {
+		  cout << "\nFormato barbero invalido\n";
+		  goto loopBarbero;
+	 }
+	 
 	 std::cout << "\n";
 
 	 //Nuevo modelo de ingresar fecha y hora
@@ -56,7 +91,7 @@ void registrarCita() {
 	 std::cout<<"Ingresar Mes: \n";
 	 std::cin>>mes;
 		if(mes>12&&mes<1){
-			std::cout<<"Por favor recuerda que un mes solo puede tener 12 meses. \n";
+			std::cout<<"\nPor favor recuerda que un mes solo puede tener 12 meses. \n";
 			goto loopMes;
 		}
 		else {
@@ -67,11 +102,11 @@ void registrarCita() {
 	 std::cout<<"Ingresar dia: \n";
 	 std::cin>>dia;
 	 if(mes==2&&dia>28){
-		 std::cout<<"Febrero solo tiene 28 dias, por favor ingresa nuevamente el dia. \n";
+		 std::cout<<"\nFebrero solo tiene 28 dias, por favor ingresa nuevamente el dia. \n";
 		 goto loopDia;
 	 }
 	 if(dia<1||dia>31){
-		 std::cout<<"Por favor intenta nuevamente. \n";
+		 std::cout<<"\nPor favor intenta nuevamente. \n";
 		 goto loopDia;
 	 }
 	 else {
@@ -96,7 +131,7 @@ void registrarCita() {
 	 std::cout<<"Ingresar minuto: \n";
 	 std::cin>>minuto;
 	 if(minuto<0||minuto>59){
-		 std::cout<<"Por favor recuerda que una hora solo tiene 60 minutos \n";
+		 std::cout<<"\nPor favor recuerda que una hora solo tiene 60 minutos \n";
 		 goto loopMinuto;
 	 }
 	 else {
@@ -127,8 +162,20 @@ void registrarFila() {
 	 std::cout << "\n";
 
 	 string nombre;
-	 std::cout << "Nombre:\n";
-	 std::cin >> nombre;
+
+loopNombre:
+	 try {
+		  std::cout << "Nombre:\n";
+		  std::cin >> nombre;
+		  std::regex r(regexNombre);
+		  std::smatch m;
+		  if (!(regex_search(nombre, m, r)))throw 'ex';
+	 }
+	 catch (...) {
+		  cout << "\nFormato de nombre invalido\n";
+		  goto loopNombre;
+	 }
+
 	 std::cout << "\n";
 
 	 int mes, dia;
