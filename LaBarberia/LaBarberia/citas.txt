@@ -6,3 +6,5 @@ Marta 4 68615131 Jose_Romo 11/12 12:30 0
 Federico 5 6862525488 Jose_Romo 12/12 12:12 0
 Daniela 6 6256489474 Miriam Bonilla 12/12 12:12
 David 7 1254789456 Andre_Herrera 12/12 12:1 0
+Andre 8 6861123010 Andre_Herrera 5/30 13:22 0
+lana 9 852963741 Andre_Herrera 5/29 13:52 0

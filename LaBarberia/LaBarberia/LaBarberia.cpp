@@ -38,13 +38,13 @@ void registrarCita() {
 	 std::stringstream sHora;
 	 int selec, mes, dia, horas, minuto;
 
-	 std::cout << "\n";
+	 cout << "\n";
 	 string nombre, telefono, barbero, fecha, hora;
 
 loopNombre:
 	 try {
-		  std::cout << "Nombre:\n";
-		  std::cin >> nombre;
+		  cout << "Nombre:\n";
+		  cin >> nombre;
 		  std::regex r(regexNombre);
 		  std::smatch m;
 		  if (!(regex_search(nombre, m, r)))throw 'ex';
@@ -54,12 +54,12 @@ loopNombre:
 		  goto loopNombre;
 	 }
 
-	 std::cout << "\n";
+	 cout << "\n";
 
 loopTelefono:
 	 try {
-		  std::cout << "Telefono:\n";
-		  std::cin >> telefono;
+		  cout << "Telefono:\n";
+		  cin >> telefono;
 		  std::regex r(regexTelefono);
 		  std::smatch m;
 		  if (!(regex_search(telefono, m, r)))throw 'ex';
@@ -68,12 +68,12 @@ loopTelefono:
 		  cout << "\nFormato de telefono invalido\n";
 		  goto loopTelefono;
 	 }
-	 std::cout << "\n";
+	 cout << "\n";
 
 loopBarbero:
 	 try {
-			 std::cout << "Barbero:\nA) Antonio Rivera \nB) Andre Herrera \nC) Miriam Bonilla\nD) Jose Romo\n";
-			 std::cin >> barbero;
+			 cout << "Barbero:\nA) Antonio Rivera \nB) Andre Herrera \nC) Miriam Bonilla\nD) Jose Romo\n";
+			 cin >> barbero;
 			 std::regex r(regexBarbero);
 			 std::smatch m;
 			 if (!(regex_search(barbero, m, r))) throw 'ex';
@@ -103,7 +103,7 @@ loopBarbero:
 		  cout << "\nFormato barbero invalido\n";
 		  goto loopBarbero;
 	 }
-	 std::cout << "\n";
+	 cout << "\n";
 
 	  //Nuevo modelo de ingresar fecha y hora
 	 cout << "Ingresar la fecha. \n";
@@ -115,7 +115,7 @@ loopBarbero:
 			   cout<<"Por favor ingresa numeros solamente. \n";
 			   goto loopMes;
 	}
-		if(mes>12&&mes<1){
+		if(mes>12||mes<1){
 			cout<<"\nPor favor recuerda que un mes solo puede tener 12 meses. \n";
 			goto loopMes;
 		}		
@@ -128,17 +128,17 @@ loopBarbero:
 			   goto loopDia;
 	}
 	 if(mes==2&&dia>28){
-		 std::cout<<"\nFebrero solo tiene 28 dias, por favor ingresa nuevamente el dia. \n";
+		 cout<<"\nFebrero solo tiene 28 dias, por favor ingresa nuevamente el dia. \n";
 		 goto loopDia;
 	 }
 	 if(dia<1||dia>31){
-		 std::cout<<"\nPor favor intenta nuevamente. \n";
+		 cout<<"\nPor favor intenta nuevamente. \n";
 		 goto loopDia;
 	 }
 
 		  	
 	 loopHora:
-	std::cout<<"Ingresar hora: \n";
+	cout<<"Ingresar hora: \n";
 	while(!(cin>>horas)){
 			   cin.clear();
 			   cin.ignore(1000,'\n');
@@ -146,12 +146,12 @@ loopBarbero:
 			   goto loopHora;
 	}
 	 if(horas<8||horas>20){
-		  std::cout<<"Por favor captura a una hora que estemos abiertos. \n";
+		  cout<<"Por favor captura a una hora que estemos abiertos. \n";
 		  goto loopHora;
 	 }
 	 
 	 loopMinuto:
-	 std::cout<<"Ingresar minuto: \n";
+	 cout<<"Ingresar minuto: \n";
 	 while(!(cin>>minuto)){
 			cin.clear();
 			cin.ignore(1000,'\n');
@@ -159,7 +159,7 @@ loopBarbero:
 			goto loopMinuto;
 	}
 	 if(minuto<0||minuto>59){
-		 std::cout<<"\nPor favor recuerda que una hora solo tiene 60 minutos \n";
+		 cout<<"\nPor favor recuerda que una hora solo tiene 60 minutos \n";
 		 goto loopMinuto;
 	 }
 		sFecha << mes << "/" << dia;
@@ -167,34 +167,34 @@ loopBarbero:
 		sHora << horas << ":" << minuto;
 	 	hora=sHora.str();
 		 
-	 cita newCita(std::to_string(arrayIndex), nombre, telefono, barbero, fecha, hora);
+	 cita newCita(to_string(arrayIndex), nombre, telefono, barbero, fecha, hora);
      addArreglo(newCita);
 }
 
 void verCita() {
 	 if (arrayIndex == 0) {
-		  std::cout << "No tienes citas programadas...\n";
+		  cout << "No tienes citas programadas...\n";
 	 }
 	 else {
-		  std:cout << "\n";
+		  cout << "\n";
 		  for (int y = 0; y < arrayIndex+1; y++) {
 			   if (arreglo[y].getTipo() == "0")
-					std::cout << arreglo[y].getId() << " " << arreglo[y].getNombre() << " " << arreglo[y].getTelefono() << " " << arreglo[y].getBarbero() << " " << arreglo[y].getFecha() << " " << arreglo[y].getHora() << " " << "\n";
+					cout << arreglo[y].getId() << " " << arreglo[y].getNombre() << " " << arreglo[y].getTelefono() << " " << arreglo[y].getBarbero() << " " << arreglo[y].getFecha() << " " << arreglo[y].getHora() << " " << "\n";
 		  }
-					std::cout << "\n";
+					cout << "\n";
 	 }
 }
 
 void registrarFila() {
 	 int selec;
-	 std::cout << "\n";
+	 cout << "\n";
 
 	 string nombre;
 
 loopNombre:
 	 try {
-		  std::cout << "Nombre:\n";
-		  std::cin >> nombre;
+		  cout << "Nombre:\n";
+		  cin >> nombre;
 		  std::regex r(regexNombre);
 		  std::smatch m;
 		  if (!(regex_search(nombre, m, r)))throw 'ex';
@@ -204,18 +204,18 @@ loopNombre:
 		  goto loopNombre;
 	 }
 
-	 std::cout << "\n";
+	 cout << "\n";
 
 	 int mes, dia;
 	 stringstream sFecha;
 	 string fecha;
 
 	 loopMes:
-	 std::cout << "Ingresar la fecha: \n";
-	 std::cout<<"Ingresar Mes: \n";
-	 std::cin>>mes;
+	 cout << "Ingresar la fecha: \n";
+	 cout<<"Ingresar Mes: \n";
+	 cin>>mes;
 		if(mes>12&&mes<1){
-			std::cout<<"Por favor recuerda que un mes solo puede tener 12 meses. \n";
+			cout<<"Por favor recuerda que un mes solo puede tener 12 meses. \n";
 			goto loopMes;
 		}
 		else {
@@ -223,14 +223,14 @@ loopNombre:
 		}
 		
 	 loopDia:
-	 std::cout<<"Ingresar dia: \n";
-	 std::cin>>dia;
+	 cout<<"Ingresar dia: \n";
+	 cin>>dia;
 	 if(mes==2&&dia>28){
-		 std::cout<<"Febrero solo tiene 28 dias, por favor ingresa nuevamente el dia. \n";
+		 cout<<"Febrero solo tiene 28 dias, por favor ingresa nuevamente el dia. \n";
 		 goto loopDia;
 	 }
 	 if(dia<1||dia>31){
-		 std::cout<<"Por favor intenta nuevamente. \n";
+		 cout<<"Por favor intenta nuevamente. \n";
 		 goto loopDia;
 	 }
 	 else {
@@ -248,12 +248,12 @@ void verFila() {
 		  cout << "No tienes filas programadas...\n";
 	 }
 	 else {
-		  std:cout << "\n";
+		  cout << "\n";
 		  for (int y = 0; y < arrayIndex+1; y++) {
 			   if (arreglo[y].getTipo() == "1")
-					std::cout << arreglo[y].getNombre() << " " << arreglo[y].getBarbero() << " " << arreglo[y].getHora() << " " << "\n";
+					cout << arreglo[y].getNombre() << " " << arreglo[y].getBarbero() << " " << arreglo[y].getHora() << " " << "\n";
 		  }
-					std::cout << "\n";
+					cout << "\n";
 	 }
 }
 
@@ -323,10 +323,10 @@ int main()
 	 while (repetir)
 	 {
 		  loopMenu:
-		  std::cout << "Bienvenido a la Barberia!\n";
-		  std::cout<<"Puedes elegir estas opciones: \n";
-		  std::cout <<"1) Citas\n2) Fila\n3) Salir\n";
-		  std::cout<<"Que deseas hacer?\n";
+		  cout << "Bienvenido a la Barberia!\n";
+		  cout<<"Puedes elegir estas opciones: \n";
+		  cout <<"1) Citas\n2) Fila\n3) Salir\n";
+		  cout<<"Que deseas hacer?\n";
 
 		  while(!(cin>>selector)){
 			   cin.clear();
@@ -337,8 +337,8 @@ int main()
 		  switch (selector)
 		  {
 		  case 1:
-			   std::cout << "1) Crear citas\n2) Ver citas\n";
-			   std::cin >> selector;
+			   cout << "1) Crear citas\n2) Ver citas\n";
+			   cin >> selector;
 			   if (selector == 1) {
 					registrarCita();
 					break;
@@ -349,8 +349,8 @@ int main()
 			   }
 	
 	 	  case 2:
-			   std::cout << "1) Crear filas\n2) Ver filas\n";
-			   std::cin >> selector;
+			   cout << "1) Crear filas\n2) Ver filas\n";
+			   cin >> selector;
 			   if (selector == 1) {
 					registrarFila();
 					break;
@@ -361,15 +361,15 @@ int main()
 			   }
 
 		  case 3:
-		  		std::cout<<"Estas seguro que deseas salir?";
-				std::cin>>mystr;
+		  		cout<<"Estas seguro que deseas salir?";
+				cin>>mystr;
 				if(mystr=="si"||mystr=="Si"||mystr=="SI"||mystr=="s"){
 			   		repetir = false;
-					std::cout << "Adios! :D \n";
+					cout << "Adios! :D \n";
 				}
 			   break;
 			default:
-			std::cout<<"Por favor escoge una opcion valida. \n";
+			cout<<"Por favor escoge una opcion valida. \n";
 			break;
 		  }
 	 }
