@@ -72,17 +72,37 @@ loopTelefono:
 
 loopBarbero:
 	 try {
-		 std::cout << "Barbero: (A / B / C / D)\n";//Se necesitan poner los nombres de los barberos, no solo letras
-		 std::cin >> barbero;
-		 std::regex r(regexBarbero);
-		 std::smatch m;
-		 if (!(regex_search(barbero, m, r)))throw 'ex';
+			 std::cout << "Barbero:\nA) Antonio Dueñas\nB) Andre Herrera \nC) Miriam Bonilla\nD) Jose Romo\n";
+			 std::cin >> barbero;
+			 std::regex r(regexBarbero);
+			 std::smatch m;
+			 if (!(regex_search(barbero, m, r))) throw 'ex';
+			 switch (*barbero.c_str()) {
+			 case 'a':
+			 case 'A':
+				 barbero = "Antonio_Dueñas";
+				 break;
+
+			 case 'b':
+			 case 'B':
+				 barbero = "Andre_Herrera";
+				 break;
+
+			 case 'c':
+			 case 'C':
+				 barbero = "Miriam_Bonilla";
+				 break;
+
+			 case 'd':
+			 case 'D':
+				 barbero = "Jose_Romo";
+				 break;
+			 }
 	 }
 	 catch (...) {
 		  cout << "\nFormato barbero invalido\n";
 		  goto loopBarbero;
 	 }
-	 
 	 std::cout << "\n";
 
 	 //Nuevo modelo de ingresar fecha y hora
