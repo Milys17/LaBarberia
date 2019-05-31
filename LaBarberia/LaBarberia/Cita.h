@@ -21,13 +21,13 @@ public:
 		  tipo = "0";
 	 }
 
-	 cita(string Id, string Nombre, string Fecha) {
+	 cita(string Id, string Nombre,string Barbero, string Hora) {
 		  id = Id;
 		  nombre = Nombre;
 		  telefono = "x";
-		  barbero = "x";
-		  hora = "x";
-		  fecha = Fecha;
+		  fecha = "x";
+		  barbero = Barbero;
+		  hora = Hora;
 		  tipo = "1";
 	 }
 

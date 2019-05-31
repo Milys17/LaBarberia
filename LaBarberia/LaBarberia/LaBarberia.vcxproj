@@ -23,7 +23,7 @@
     <ProjectGuid>{38B7155A-BE59-4903-964B-1A97FCFA1D04}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>LaBarberia</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Ayuda.h" />
     <ClInclude Include="Cita.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>

@@ -1,6 +1,7 @@
 ﻿  LaBarberia.cpp
-c:\users\romoj_xo\desktop\barberia\labarberia\labarberia\labarberia.cpp(39): warning C4101: 'selec': unreferenced local variable
-c:\users\romoj_xo\desktop\barberia\labarberia\labarberia\labarberia.cpp(171): warning C4102: 'std': unreferenced label
-c:\users\romoj_xo\desktop\barberia\labarberia\labarberia\labarberia.cpp(181): warning C4101: 'selec': unreferenced local variable
-c:\users\romoj_xo\desktop\barberia\labarberia\labarberia\labarberia.cpp(243): warning C4102: 'std': unreferenced label
-  LaBarberia.vcxproj -> C:\Users\romoj_xo\Desktop\Barberia\LaBarberia\x64\Debug\LaBarberia.exe
+d:\proyectos\proyectos c++\labarberia\labarberia\labarberia\labarberia.cpp(43): warning C4101: 'selec': unreferenced local variable
+d:\proyectos\proyectos c++\labarberia\labarberia\labarberia\labarberia.cpp(304): warning C4102: 'loopTime': unreferenced label
+d:\proyectos\proyectos c++\labarberia\labarberia\labarberia\labarberia.cpp(315): warning C4102: 'generarFila': unreferenced label
+d:\proyectos\proyectos c++\labarberia\labarberia\labarberia\labarberia.cpp(284): warning C4101: 'selec': unreferenced local variable
+d:\proyectos\proyectos c++\labarberia\labarberia\labarberia\labarberia.cpp(467): warning C4101: 'aux': unreferenced local variable
+  LaBarberia.vcxproj -> D:\Proyectos\Proyectos C++\LaBarberia\LaBarberia\x64\Debug\LaBarberia.exe
