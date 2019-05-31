@@ -9,6 +9,7 @@
 #include <conio.h>
 #include "Ayuda.h"
 #include <ctime>
+#include <time.h>
 
 
 using namespace std;
@@ -204,6 +205,11 @@ loopMinuto:
 
 	 if(minuto<0||minuto>59){
 		 cout<<"\nPor favor recuerda que una hora solo tiene 60 minutos \n";
+		 goto loopMinuto;
+	 }
+	 if(horas==20&&minuto>45){
+		 cout<<"Tu cita no puede ser a a partir de las 8:45 p.m.\nNo podemos cerrar despues de las 9:00 p.m.\n";
+		 cout<<"Por favor elige otra hora \n";
 		 goto loopMinuto;
 	 }
 	 else {
@@ -470,8 +476,8 @@ int main(){
 	 string selectorS;
 	 while (repetir)
 	 {
-		 system("cls");
 		 loopMenu:
+		 system("cls");
 		 cout << "Bienvenido a la Barberia!\n";
 		 cout<<"Puedes elegir estas opciones: \n";
 		 cout <<"1) Citas\n2) Fila\n3) Salir\n";
@@ -480,6 +486,7 @@ int main(){
 			   cin.clear();
 			   cin.ignore(1000,'\n');
 			   cout<<"Por favor elige una opcion valida. \n";
+				 _getch();
 			   goto loopMenu;
 		   }
 			try{
@@ -489,6 +496,7 @@ int main(){
 	 		}
 			 catch (...) {
 				cout<<"Por favor elige una opcion valida. \n";
+				_getch();
 		  		goto loopMenu;
 	 		 }
 			  std::istringstream(selectorS)>>selector;
