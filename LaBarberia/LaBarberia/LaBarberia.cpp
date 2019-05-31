@@ -8,6 +8,8 @@
 #include <stdlib.h>
 #include <conio.h>
 #include "Ayuda.h"
+#include <ctime>
+
 
 using namespace std;
 
