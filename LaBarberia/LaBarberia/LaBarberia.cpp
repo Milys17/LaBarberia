@@ -5,6 +5,8 @@
 #include <string>
 #include <regex>
 #include "Cita.h"
+#include <stdlib.h>
+#include <conio.h>
 using namespace std;
 
 int arrayIndex = 0;
@@ -182,6 +184,8 @@ void verCita() {
 					cout << arreglo[y].getId() << " " << arreglo[y].getNombre() << " " << arreglo[y].getTelefono() << " " << arreglo[y].getBarbero() << " " << arreglo[y].getFecha() << " " << arreglo[y].getHora() << " " << "\n";
 		  }
 					cout << "\n";
+					cout<<"\nPresiona cualquier tecla para volver al menu principal. \n";
+					_getch();
 	 }
 }
 
@@ -254,6 +258,8 @@ void verFila() {
 					cout << arreglo[y].getNombre() << " " << arreglo[y].getBarbero() << " " << arreglo[y].getHora() << " " << "\n";
 		  }
 					cout << "\n";
+					cout<<"\nPresiona cualquier tecla para volver al menu principal. \n";
+					_getch();
 	 }
 }
 
@@ -315,20 +321,21 @@ void IniciarArchivo() {
 	 }
 }
 
-int main()
-{
+int main(){
+	system("color 0A");
 	 IniciarArchivo();
 	 bool repetir = true;
 	 int selector, aux;
 	 string selectorS;
 	 while (repetir)
 	 {
-		  loopMenu:
-		  cout << "Bienvenido a la Barberia!\n";
-		  cout<<"Puedes elegir estas opciones: \n";
-		  cout <<"1) Citas\n2) Fila\n3) Salir\n";
-		  cout<<"Que deseas hacer?\n";
-		  while(!(cin>>selectorS)){
+		 system("cls");
+		 loopMenu:
+		 cout << "Bienvenido a la Barberia!\n";
+		 cout<<"Puedes elegir estas opciones: \n";
+		 cout <<"1) Citas\n2) Fila\n3) Salir\n";
+		 cout<<"Que deseas hacer?\n";
+		 while(!(cin>>selectorS)){
 			   cin.clear();
 			   cin.ignore(1000,'\n');
 			   cout<<"Por favor elige una opcion valida. \n";
@@ -347,9 +354,11 @@ int main()
 		  switch (selector)
 		  {
 		  case 1:
-			   cout << "1) Crear citas\n2) Ver citas\n3)Presione cualquier tecla para salir\n";
-			   cin >> selector;
-			   if (selector == 1) {
+		  		system("cls");
+			    cout << "1) Crear citas\n2) Ver citas\n3)Presione cualquier tecla para salir\n";
+			    cin >> selector;
+				system("cls");
+			    if (selector == 1) {
 					registrarCita();
 					break;
 			   }
@@ -357,28 +366,33 @@ int main()
 					verCita();
 					break;
 			   }
-			   else{
+			   else
 				   break;
-			   }
 	
 	 	  case 2:
-			   cout << "1) Crear filas\n2) Ver filas\n";
-			   cin >> selector;
-			   if (selector == 1) {
-					registrarFila();
-					break;
+		    system("cls");
+			cout << "1) Crear filas\n2) Ver filas\n";
+			cin >> selector;
+			system("cls");
+			if (selector == 1) {
+				registrarFila();
+				break;
 			   }
-			   else {
-					verFila();
-					break;
+			   if(selector==2){
+				verFila();
+				break;
 			   }
-
+			else 
+				break;
+			
 		  case 3:
+		  		system("cls");
 		  		cout<<"Estas seguro que deseas salir?";
 				cin>>mystr;
-				if(mystr=="si"||mystr=="Si"||mystr=="SI"||mystr=="s"){
+				if(mystr=="si"||mystr=="Si"||mystr=="SI"||mystr=="s"||mystr=="simon"||mystr=="S"){
 			   		repetir = false;
 					cout << "Adios! :D \n";
+					_getch();
 				}
 			   break;
 			default:
