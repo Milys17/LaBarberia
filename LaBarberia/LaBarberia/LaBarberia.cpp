@@ -9,7 +9,7 @@ using namespace std;
 
 int arrayIndex = 0;
 string mystr;
-string regexNombre = "^[A-Za-z/s]+$", regexTelefono = "^[0-9]+$", regexBarbero = "^[A-Da-d]$";
+string regexNombre = "^[A-Za-z/s]+$", regexTelefono = "^([0-9]{7}|[0-9]{10})$", regexBarbero = "^[A-Da-d]$", regexSelector= "^([1-3]{1})$";
 
 cita arreglo[200];
 
@@ -50,7 +50,7 @@ loopNombre:
 		  if (!(regex_search(nombre, m, r)))throw 'ex';
 	 }
 	 catch (...) {
-		  cout << "\nFormato de nombre invalido\n";
+		  cout << "\nFormato de nombre invalido. \n";
 		  goto loopNombre;
 	 }
 
@@ -319,7 +319,8 @@ int main()
 {
 	 IniciarArchivo();
 	 bool repetir = true;
-	 int selector;
+	 int selector, aux;
+	 string selectorS;
 	 while (repetir)
 	 {
 		  loopMenu:
@@ -327,25 +328,37 @@ int main()
 		  cout<<"Puedes elegir estas opciones: \n";
 		  cout <<"1) Citas\n2) Fila\n3) Salir\n";
 		  cout<<"Que deseas hacer?\n";
-
-		  while(!(cin>>selector)){
+		  while(!(cin>>selectorS)){
 			   cin.clear();
 			   cin.ignore(1000,'\n');
 			   cout<<"Por favor elige una opcion valida. \n";
 			   goto loopMenu;
 		   }
+			try{
+		   		std::regex r(regexSelector);
+		   		std::smatch m;
+				if (!(regex_search(selectorS, m, r)))throw 'ex';
+	 		}
+			 catch (...) {
+				cout<<"Por favor elige una opcion valida. \n";
+		  		goto loopMenu;
+	 		 }
+			  std::istringstream(selectorS)>>selector;
 		  switch (selector)
 		  {
 		  case 1:
-			   cout << "1) Crear citas\n2) Ver citas\n";
+			   cout << "1) Crear citas\n2) Ver citas\n3)Presione cualquier tecla para salir\n";
 			   cin >> selector;
 			   if (selector == 1) {
 					registrarCita();
 					break;
 			   }
-			   else {
+			   if(selector==2){
 					verCita();
 					break;
+			   }
+			   else{
+				   break;
 			   }
 	
 	 	  case 2:
